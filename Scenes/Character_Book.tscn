@@ -1,0 +1,301 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Scripts/Character_Book.gd" type="Script" id=1]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/1.png" type="Texture" id=2]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/2.png" type="Texture" id=3]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/3.png" type="Texture" id=4]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/0.png" type="Texture" id=5]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/4.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/Inventory.gd" type="Script" id=7]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/3.png" type="Texture" id=8]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/1.png" type="Texture" id=9]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/2.png" type="Texture" id=10]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/4.png" type="Texture" id=11]
+[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/0.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Cryo's Mini GUI/GUI/Inventory Slot.png" type="Texture" id=13]
+
+[sub_resource type="DynamicFontData" id=3]
+antialiased = false
+font_path = "res://Fonts/VTCGoblinHandBold.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 31
+outline_size = 1
+outline_color = Color( 0, 0, 0, 0.611765 )
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFontData" id=5]
+antialiased = false
+font_path = "res://Fonts/VTCGoblinHand.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 13
+outline_size = 1
+outline_color = Color( 0, 0, 0, 0.611765 )
+font_data = SubResource( 5 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "Turn Left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OpenBook:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 6 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Turn Right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OpenBook:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 11 ) ]
+}
+
+[node name="Character_Book" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="OpenBook" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -387.5
+margin_top = -261.5
+margin_right = 387.5
+margin_bottom = 261.5
+texture = ExtResource( 5 )
+
+[node name="Page1_Header" type="Label" parent="OpenBook"]
+margin_left = 119.0
+margin_top = 110.0
+margin_right = 321.0
+margin_bottom = 137.0
+custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Character"
+align = 1
+valign = 1
+
+[node name="Page1_Body" type="Label" parent="OpenBook"]
+margin_left = 110.0
+margin_top = 165.0
+margin_right = 332.0
+margin_bottom = 417.0
+custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Level : 
+Damage :
+Attack Speed :
+Crit Chance :
+Health :
+Health Regen :
+Move Speed :
+Solar Energy :
+Solar Regen :
+
+
+
+
+
+
+"
+autowrap = true
+
+[node name="Page2_Body" type="Label" parent="OpenBook"]
+margin_left = 440.0
+margin_top = 165.0
+margin_right = 662.0
+margin_bottom = 417.0
+custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "
+"
+autowrap = true
+
+[node name="Page2_Header" type="Label" parent="OpenBook"]
+margin_left = 449.0
+margin_top = 110.0
+margin_right = 642.0
+margin_bottom = 137.0
+custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Inventory"
+align = 1
+valign = 1
+
+[node name="Inventory" type="GridContainer" parent="OpenBook"]
+margin_left = 445.0
+margin_top = 170.0
+margin_right = 845.0
+margin_bottom = 466.0
+rect_scale = Vector2( 0.5, 0.5 )
+columns = 4
+script = ExtResource( 7 )
+
+[node name="Slot_1" type="TextureRect" parent="OpenBook/Inventory"]
+margin_right = 97.0
+margin_bottom = 96.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_1" type="TextureRect" parent="OpenBook/Inventory/Slot_1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_2" type="TextureRect" parent="OpenBook/Inventory"]
+margin_left = 101.0
+margin_right = 198.0
+margin_bottom = 96.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_2" type="TextureRect" parent="OpenBook/Inventory/Slot_2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_3" type="TextureRect" parent="OpenBook/Inventory"]
+margin_left = 202.0
+margin_right = 299.0
+margin_bottom = 96.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_3" type="TextureRect" parent="OpenBook/Inventory/Slot_3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_4" type="TextureRect" parent="OpenBook/Inventory"]
+margin_left = 303.0
+margin_right = 400.0
+margin_bottom = 96.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_4" type="TextureRect" parent="OpenBook/Inventory/Slot_4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_5" type="TextureRect" parent="OpenBook/Inventory"]
+margin_top = 100.0
+margin_right = 97.0
+margin_bottom = 196.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_5" type="TextureRect" parent="OpenBook/Inventory/Slot_5"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_6" type="TextureRect" parent="OpenBook/Inventory"]
+margin_left = 101.0
+margin_top = 100.0
+margin_right = 198.0
+margin_bottom = 196.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_6" type="TextureRect" parent="OpenBook/Inventory/Slot_6"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_7" type="TextureRect" parent="OpenBook/Inventory"]
+margin_left = 202.0
+margin_top = 100.0
+margin_right = 299.0
+margin_bottom = 196.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_7" type="TextureRect" parent="OpenBook/Inventory/Slot_7"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_8" type="TextureRect" parent="OpenBook/Inventory"]
+margin_left = 303.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 196.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_8" type="TextureRect" parent="OpenBook/Inventory/Slot_8"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_9" type="TextureRect" parent="OpenBook/Inventory"]
+margin_top = 200.0
+margin_right = 97.0
+margin_bottom = 296.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_9" type="TextureRect" parent="OpenBook/Inventory/Slot_9"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_10" type="TextureRect" parent="OpenBook/Inventory"]
+margin_left = 101.0
+margin_top = 200.0
+margin_right = 198.0
+margin_bottom = 296.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_10" type="TextureRect" parent="OpenBook/Inventory/Slot_10"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_11" type="TextureRect" parent="OpenBook/Inventory"]
+margin_left = 202.0
+margin_top = 200.0
+margin_right = 299.0
+margin_bottom = 296.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_11" type="TextureRect" parent="OpenBook/Inventory/Slot_11"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="Slot_12" type="TextureRect" parent="OpenBook/Inventory"]
+margin_left = 303.0
+margin_top = 200.0
+margin_right = 400.0
+margin_bottom = 296.0
+rect_clip_content = true
+texture = ExtResource( 13 )
+
+[node name="SlotImage_12" type="TextureRect" parent="OpenBook/Inventory/Slot_12"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Turn Left" = SubResource( 1 )
+"anims/Turn Right" = SubResource( 2 )

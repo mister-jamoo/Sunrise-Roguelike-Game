@@ -1,0 +1,274 @@
+[gd_scene load_steps=42 format=2]
+
+[ext_resource path="res://Assets/Demons/Animations/tainted scoundrel/TaintedScoundrelIdleFront/TaintedScoundrelIdleFront.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/EnemyStats.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-idle-00.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-idle-01.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-idle-02.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-idle-03.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-attack-00.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-attack-03.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-attack-04.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-die-00.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-attack-02.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-attack-01.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-die-02.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-die-04.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-run-00.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-run-04.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-die-05.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-die-06.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-die-01.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-run-05.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-run-02.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-die-03.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-run-01.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Monster Pack 1.4/Kobold/Individual Sprites/kobold-run-03.png" type="Texture" id=26]
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+uniform float value: hint_range(0,1);
+uniform sampler2D noise_texture;
+
+void fragment(){
+	
+	vec4 current_pixel = texture(TEXTURE,UV);
+	vec4 current_noise_pixel = texture(noise_texture, UV);
+	
+	if(current_noise_pixel.r > value){
+		COLOR.a -= 1f;
+	}
+	else{
+		COLOR = current_pixel
+	}
+}"
+
+[sub_resource type="OpenSimplexNoise" id=10]
+seed = 3
+period = 18.7
+
+[sub_resource type="NoiseTexture" id=11]
+width = 1500
+height = 1000
+noise = SubResource( 10 )
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = SubResource( 8 )
+shader_param/value = 1.0
+shader_param/noise_texture = SubResource( 11 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 25 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 18 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 21 ), ExtResource( 15 ), ExtResource( 24 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "Death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 4.0
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 5.0
+height = 6.0
+
+[sub_resource type="Animation" id=14]
+resource_name = "Attack"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Attack" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Death"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Death" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Run"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Run" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[node name="Imp" type="KinematicBody2D"]
+scale = Vector2( 0.8, 0.8 )
+z_index = 1
+collision_layer = 8
+collision_mask = 11
+script = ExtResource( 2 )
+
+[node name="EnemyStats" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+material = SubResource( 9 )
+position = Vector2( 7, -2 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 5 )
+animation = "Attack"
+flip_h = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 3 )]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 14 )
+anims/Death = SubResource( 15 )
+anims/Idle = SubResource( 12 )
+anims/Run = SubResource( 13 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 1.5, 0 )
+scale = Vector2( 1.15, 1 )
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_Hitbox_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+
+[editable path="Hitbox"]

@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/252.png-6ecc14770c16bde9655ba24dc3d8f6ba.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Super GUI Bundle 3 Paper Pack v1.0/Paper UI/Headers/Large/252.png"
+dest_files=[ "res://.import/252.png-6ecc14770c16bde9655ba24dc3d8f6ba.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
