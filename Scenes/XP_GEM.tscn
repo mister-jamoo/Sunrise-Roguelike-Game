@@ -29,6 +29,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=1]
+radius = 13.0
 height = 0.0
 
 [sub_resource type="Animation" id=11]
@@ -58,7 +59,6 @@ light_mask = 2
 position = Vector2( 0, -0.179483 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 6 )
-frame = 1
 speed_scale = 2.0
 playing = true
 

@@ -1,28 +1,59 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Character_Book.gd" type="Script" id=1]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/1.png" type="Texture" id=2]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/2.png" type="Texture" id=3]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/3.png" type="Texture" id=4]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/0.png" type="Texture" id=5]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/4.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/Inventory.gd" type="Script" id=7]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/3.png" type="Texture" id=8]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/1.png" type="Texture" id=9]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/2.png" type="Texture" id=10]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/4.png" type="Texture" id=11]
-[ext_resource path="res://Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/0.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Cryo's Mini GUI/GUI/Inventory Slot.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/4.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/3.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/0.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/0.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Left/2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Books/Book 1/Animated Book/Page Flip/Right/4.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Ball and Chain Bot/idle.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/Header_beige.tres" type="DynamicFont" id=15]
+[ext_resource path="res://Scenes/Slot.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Paper UI/Text Box Pointers/11.png" type="Texture" id=17]
 
-[sub_resource type="DynamicFontData" id=3]
-antialiased = false
-font_path = "res://Fonts/VTCGoblinHandBold.ttf"
+[sub_resource type="StreamTexture" id=17]
+load_path = "res://.import/0.png-44bad9b4f529021717b480cd296630f0.stex"
 
-[sub_resource type="DynamicFont" id=4]
-size = 31
+[sub_resource type="DynamicFontData" id=9]
+font_path = "res://Fonts/VTCGoblinHand.ttf"
+
+[sub_resource type="DynamicFont" id=10]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 0.611765 )
-font_data = SubResource( 3 )
+font_data = SubResource( 9 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 39, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 78, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 117, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 156, 126, 39 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
 
 [sub_resource type="DynamicFontData" id=5]
 antialiased = false
@@ -34,11 +65,11 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 0.611765 )
 font_data = SubResource( 5 )
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=7]
 resource_name = "Turn Left"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("OpenBook:texture")
+tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -47,14 +78,28 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 6 ) ]
+"values": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 2 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "update_page"
+} ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=8]
 resource_name = "Turn Right"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("OpenBook:texture")
+tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -63,60 +108,369 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 11 ) ]
+"values": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 11 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "update_page"
+} ]
 }
 
-[node name="Character_Book" type="CanvasLayer"]
-script = ExtResource( 1 )
-
-[node name="OpenBook" type="TextureRect" parent="."]
+[node name="Character_Book" type="TextureRect"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -387.5
+margin_left = 688.0
 margin_top = -261.5
-margin_right = 387.5
+margin_right = 1463.0
 margin_bottom = 261.5
-texture = ExtResource( 5 )
+texture = SubResource( 17 )
+script = ExtResource( 1 )
 
-[node name="Page1_Header" type="Label" parent="OpenBook"]
+[node name="Page_1" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Inventory" type="GridContainer" parent="Page_1"]
+margin_left = 445.0
+margin_top = 160.0
+margin_right = 845.0
+margin_bottom = 456.0
+rect_scale = Vector2( 0.5, 0.5 )
+columns = 4
+
+[node name="Slot" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+
+[node name="Slot2" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_left = 101.0
+margin_right = 198.0
+
+[node name="Slot3" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_left = 202.0
+margin_right = 299.0
+
+[node name="Slot4" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_left = 303.0
+margin_right = 400.0
+
+[node name="Slot5" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_top = 100.0
+margin_bottom = 196.0
+
+[node name="Slot6" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_left = 101.0
+margin_top = 100.0
+margin_right = 198.0
+margin_bottom = 196.0
+
+[node name="Slot7" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_left = 202.0
+margin_top = 100.0
+margin_right = 299.0
+margin_bottom = 196.0
+
+[node name="Slot8" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_left = 303.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 196.0
+
+[node name="Slot9" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_top = 200.0
+margin_bottom = 296.0
+
+[node name="Slot10" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_left = 101.0
+margin_top = 200.0
+margin_right = 198.0
+margin_bottom = 296.0
+
+[node name="Slot11" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_left = 202.0
+margin_top = 200.0
+margin_right = 299.0
+margin_bottom = 296.0
+
+[node name="Slot12" parent="Page_1/Inventory" instance=ExtResource( 16 )]
+margin_left = 303.0
+margin_top = 200.0
+margin_right = 400.0
+margin_bottom = 296.0
+
+[node name="Equipment" type="GridContainer" parent="Page_1"]
+anchor_right = 0.5
+anchor_bottom = 0.25
+margin_left = 445.0
+margin_top = 360.0
+margin_right = 825.0
+margin_bottom = 446.0
+rect_scale = Vector2( 0.5, 0.5 )
+columns = 4
+
+[node name="Slot" parent="Page_1/Equipment" instance=ExtResource( 16 )]
+
+[node name="Slot2" parent="Page_1/Equipment" instance=ExtResource( 16 )]
+margin_left = 101.0
+margin_right = 198.0
+
+[node name="Slot3" parent="Page_1/Equipment" instance=ExtResource( 16 )]
+margin_left = 202.0
+margin_right = 299.0
+
+[node name="Slot4" parent="Page_1/Equipment" instance=ExtResource( 16 )]
+margin_left = 303.0
+margin_right = 400.0
+
+[node name="LeftPage_Header" type="Label" parent="Page_1"]
 margin_left = 119.0
 margin_top = 110.0
 margin_right = 321.0
 margin_bottom = 137.0
 custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
-custom_fonts/font = SubResource( 4 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 15 )
 text = "Character"
 align = 1
 valign = 1
 
-[node name="Page1_Body" type="Label" parent="OpenBook"]
+[node name="LeftPage_Body" type="RichTextLabel" parent="Page_1"]
+margin_left = 110.0
+margin_top = 165.0
+margin_right = 332.0
+margin_bottom = 417.0
+custom_colors/default_color = Color( 0.878431, 0.615686, 0.4, 1 )
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+
+[node name="RightPage_Header" type="Label" parent="Page_1"]
+margin_left = 449.0
+margin_top = 110.0
+margin_right = 642.0
+margin_bottom = 137.0
+custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "Inventory"
+align = 1
+valign = 1
+
+[node name="TurnPageRight" type="TextureButton" parent="Page_1"]
+anchor_left = 0.045
+anchor_top = 0.516
+anchor_right = 0.045
+anchor_bottom = 0.516
+margin_left = 720.2
+margin_top = 216.36
+margin_right = 729.2
+margin_bottom = 227.36
+rect_scale = Vector2( 4, 4 )
+texture_normal = ExtResource( 17 )
+expand = true
+stretch_mode = 3
+flip_h = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Page_1"]
+modulate = Color( 1, 0.752941, 0.494118, 0.803922 )
+position = Vector2( 211, 370.5 )
+scale = Vector2( 4, 4 )
+frames = SubResource( 16 )
+animation = "Idle"
+frame = 2
+speed_scale = 2.0
+playing = true
+
+[node name="Equipment Label" type="Label" parent="Page_1"]
+margin_left = 447.0
+margin_top = 323.5
+margin_right = 647.0
+margin_bottom = 350.5
+custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "Equipment"
+
+[node name="Page_2" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="LeftPage_Header" type="Label" parent="Page_2"]
+margin_left = 90.5
+margin_top = 105.5
+margin_right = 354.5
+margin_bottom = 138.5
+custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "Traits"
+align = 1
+valign = 1
+
+[node name="Traits" type="GridContainer" parent="Page_2"]
+margin_left = 98.0
+margin_top = 159.0
+margin_right = 616.0
+margin_bottom = 686.0
+rect_scale = Vector2( 0.5, 0.5 )
+columns = 5
+
+[node name="Slot" parent="Page_2/Traits" instance=ExtResource( 16 )]
+
+[node name="Slot2" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 101.0
+margin_right = 198.0
+
+[node name="Slot3" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 202.0
+margin_right = 299.0
+
+[node name="Slot4" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 303.0
+margin_right = 400.0
+
+[node name="Slot5" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 404.0
+margin_right = 501.0
+
+[node name="Slot6" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_top = 100.0
+margin_bottom = 196.0
+
+[node name="Slot7" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 101.0
+margin_top = 100.0
+margin_right = 198.0
+margin_bottom = 196.0
+
+[node name="Slot8" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 202.0
+margin_top = 100.0
+margin_right = 299.0
+margin_bottom = 196.0
+
+[node name="Slot9" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 303.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 196.0
+
+[node name="Slot10" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 404.0
+margin_top = 100.0
+margin_right = 501.0
+margin_bottom = 196.0
+
+[node name="Slot11" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_top = 200.0
+margin_bottom = 296.0
+
+[node name="Slot12" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 101.0
+margin_top = 200.0
+margin_right = 198.0
+margin_bottom = 296.0
+
+[node name="Slot13" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 202.0
+margin_top = 200.0
+margin_right = 299.0
+margin_bottom = 296.0
+
+[node name="Slot14" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 303.0
+margin_top = 200.0
+margin_right = 400.0
+margin_bottom = 296.0
+
+[node name="Slot15" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 404.0
+margin_top = 200.0
+margin_right = 501.0
+margin_bottom = 296.0
+
+[node name="Slot16" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_top = 300.0
+margin_bottom = 396.0
+
+[node name="Slot17" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 101.0
+margin_top = 300.0
+margin_right = 198.0
+margin_bottom = 396.0
+
+[node name="Slot18" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 202.0
+margin_top = 300.0
+margin_right = 299.0
+margin_bottom = 396.0
+
+[node name="Slot19" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 303.0
+margin_top = 300.0
+margin_right = 400.0
+margin_bottom = 396.0
+
+[node name="Slot20" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 404.0
+margin_top = 300.0
+margin_right = 501.0
+margin_bottom = 396.0
+
+[node name="Slot21" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_top = 400.0
+margin_bottom = 496.0
+
+[node name="Slot22" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 101.0
+margin_top = 400.0
+margin_right = 198.0
+margin_bottom = 496.0
+
+[node name="Slot23" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 202.0
+margin_top = 400.0
+margin_right = 299.0
+margin_bottom = 496.0
+
+[node name="Slot24" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 303.0
+margin_top = 400.0
+margin_right = 400.0
+margin_bottom = 496.0
+
+[node name="Slot25" parent="Page_2/Traits" instance=ExtResource( 16 )]
+margin_left = 404.0
+margin_top = 400.0
+margin_right = 501.0
+margin_bottom = 496.0
+
+[node name="LeftPage_Body" type="Label" parent="Page_2"]
 margin_left = 110.0
 margin_top = 165.0
 margin_right = 332.0
 margin_bottom = 417.0
 custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
 custom_fonts/font = SubResource( 6 )
-text = "Level : 
-Damage :
-Attack Speed :
-Crit Chance :
-Health :
-Health Regen :
-Move Speed :
-Solar Energy :
-Solar Regen :
-
-
-
-
-
-
-"
 autowrap = true
 
-[node name="Page2_Body" type="Label" parent="OpenBook"]
+[node name="RightPage_Header" type="Label" parent="Page_2"]
+margin_left = 449.0
+margin_top = 110.0
+margin_right = 642.0
+margin_bottom = 137.0
+custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "MENU"
+align = 1
+valign = 1
+
+[node name="RightPage_Body" type="Label" parent="Page_2"]
 margin_left = 440.0
 margin_top = 165.0
 margin_right = 662.0
@@ -127,175 +481,23 @@ text = "
 "
 autowrap = true
 
-[node name="Page2_Header" type="Label" parent="OpenBook"]
-margin_left = 449.0
-margin_top = 110.0
-margin_right = 642.0
-margin_bottom = 137.0
-custom_colors/font_color = Color( 0.878431, 0.615686, 0.4, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Inventory"
-align = 1
-valign = 1
-
-[node name="Inventory" type="GridContainer" parent="OpenBook"]
-margin_left = 445.0
-margin_top = 170.0
-margin_right = 845.0
-margin_bottom = 466.0
-rect_scale = Vector2( 0.5, 0.5 )
-columns = 4
-script = ExtResource( 7 )
-
-[node name="Slot_1" type="TextureRect" parent="OpenBook/Inventory"]
-margin_right = 97.0
-margin_bottom = 96.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_1" type="TextureRect" parent="OpenBook/Inventory/Slot_1"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="TurnPageLeft" type="TextureButton" parent="Page_2"]
+anchor_left = 0.045
+anchor_top = 0.516
+anchor_right = 0.045
+anchor_bottom = 0.516
+margin_left = 11.2
+margin_top = 216.36
+margin_right = 20.2
+margin_bottom = 227.36
+rect_scale = Vector2( 4, 4 )
+texture_normal = ExtResource( 17 )
 expand = true
-
-[node name="Slot_2" type="TextureRect" parent="OpenBook/Inventory"]
-margin_left = 101.0
-margin_right = 198.0
-margin_bottom = 96.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_2" type="TextureRect" parent="OpenBook/Inventory/Slot_2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_3" type="TextureRect" parent="OpenBook/Inventory"]
-margin_left = 202.0
-margin_right = 299.0
-margin_bottom = 96.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_3" type="TextureRect" parent="OpenBook/Inventory/Slot_3"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_4" type="TextureRect" parent="OpenBook/Inventory"]
-margin_left = 303.0
-margin_right = 400.0
-margin_bottom = 96.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_4" type="TextureRect" parent="OpenBook/Inventory/Slot_4"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_5" type="TextureRect" parent="OpenBook/Inventory"]
-margin_top = 100.0
-margin_right = 97.0
-margin_bottom = 196.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_5" type="TextureRect" parent="OpenBook/Inventory/Slot_5"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_6" type="TextureRect" parent="OpenBook/Inventory"]
-margin_left = 101.0
-margin_top = 100.0
-margin_right = 198.0
-margin_bottom = 196.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_6" type="TextureRect" parent="OpenBook/Inventory/Slot_6"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_7" type="TextureRect" parent="OpenBook/Inventory"]
-margin_left = 202.0
-margin_top = 100.0
-margin_right = 299.0
-margin_bottom = 196.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_7" type="TextureRect" parent="OpenBook/Inventory/Slot_7"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_8" type="TextureRect" parent="OpenBook/Inventory"]
-margin_left = 303.0
-margin_top = 100.0
-margin_right = 400.0
-margin_bottom = 196.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_8" type="TextureRect" parent="OpenBook/Inventory/Slot_8"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_9" type="TextureRect" parent="OpenBook/Inventory"]
-margin_top = 200.0
-margin_right = 97.0
-margin_bottom = 296.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_9" type="TextureRect" parent="OpenBook/Inventory/Slot_9"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_10" type="TextureRect" parent="OpenBook/Inventory"]
-margin_left = 101.0
-margin_top = 200.0
-margin_right = 198.0
-margin_bottom = 296.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_10" type="TextureRect" parent="OpenBook/Inventory/Slot_10"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_11" type="TextureRect" parent="OpenBook/Inventory"]
-margin_left = 202.0
-margin_top = 200.0
-margin_right = 299.0
-margin_bottom = 296.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_11" type="TextureRect" parent="OpenBook/Inventory/Slot_11"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-
-[node name="Slot_12" type="TextureRect" parent="OpenBook/Inventory"]
-margin_left = 303.0
-margin_top = 200.0
-margin_right = 400.0
-margin_bottom = 296.0
-rect_clip_content = true
-texture = ExtResource( 13 )
-
-[node name="SlotImage_12" type="TextureRect" parent="OpenBook/Inventory/Slot_12"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
+stretch_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/Turn Left" = SubResource( 1 )
-"anims/Turn Right" = SubResource( 2 )
+"anims/Turn Left" = SubResource( 7 )
+"anims/Turn Right" = SubResource( 8 )
+
+[connection signal="pressed" from="Page_1/TurnPageRight" to="." method="_on_TurnPageRight_pressed"]
+[connection signal="pressed" from="Page_2/TurnPageLeft" to="." method="_on_TurnPageLeft_pressed"]

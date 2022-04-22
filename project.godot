@@ -14,6 +14,10 @@ config/name="Sunrise"
 run/main_scene="res://Scenes/level_1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Armory="*res://Armory.gd"
+
 [display]
 
 window/vsync/use_vsync=false
@@ -108,5 +112,6 @@ quality/driver/driver_name="GLES2"
 2d/options/use_nvidia_rect_flicker_workaround=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+quality/filters/anisotropic_filter_level=1
 environment/default_clear_color=Color( 0.027451, 0.0156863, 0.0392157, 1 )
 environment/default_environment="res://default_env.tres"

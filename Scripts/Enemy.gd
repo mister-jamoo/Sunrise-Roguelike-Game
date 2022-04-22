@@ -81,16 +81,17 @@ func hit_effect():
 	$AnimatedSprite.modulate = Color(1,1,1)
 
 func dealDamage():
-	var crit_chance = rand_range(0,1)
-	var damage = 0
-	var targets = $Hitbox.get_overlapping_bodies()
-	if($EnemyStats.crit_chance >= crit_chance):
-		damage = rng.randi_range($EnemyStats.base_damage * 3, $EnemyStats.base_damage * 4)
-	else:
-		damage = rng.randi_range($EnemyStats.base_damage, $EnemyStats.base_damage * 2)
-	
-	for n in targets:
-		n.takeDamage(damage)
+	if(attackBool):
+		var crit_chance = rand_range(0,1)
+		var damage = 0
+		var targets = $Hitbox.get_overlapping_bodies()
+		if($EnemyStats.crit_chance >= crit_chance):
+			damage = rng.randi_range($EnemyStats.base_damage * 3, $EnemyStats.base_damage * 4)
+		else:
+			damage = rng.randi_range($EnemyStats.base_damage, $EnemyStats.base_damage * 2)
+		
+		for n in targets:
+			n.takeDamage(damage)
 
 func generateXPGem():
 	var amount = clamp(randi()%3, 1, 3)
@@ -125,6 +126,7 @@ func takeDamage(damage, crit):
 		var tween = Tween.new()
 		add_child(tween)
 		tween.interpolate_property($AnimatedSprite.get_material(), "shader_param/value", 1, 0, 0.7, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.interpolate_property($Shadow.get_material(), "shader_param/value", 1, 0, 0.7, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.interpolate_property($AnimatedSprite, "modulate", Color(1,1,1,1), Color(0,0,0,1), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 		yield(tween, "tween_all_completed")

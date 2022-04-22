@@ -7,12 +7,12 @@ export (float) var health_regen = 0.05;
 export (float) var crit_chance = 0.15;
 export (int) var crit_modifier = 3;
 export (int) var movement_speed = 40;
-export (float) var attack_speed = 5;
+export (float) var attack_speed = 1;
 export (float) var armor = 0.1;
 export (float) var hit_rating = 0.75;
 export (float) var current_solar_energy = 1;
 export (float) var max_solar_energy = 100;
-export (float) var solar_energy_deplete_rate = 0.00;
+export (float) var solar_energy_deplete_rate = 0.05;
 export (int) var current_xp = 0
 export (int) var max_xp
 export (int) var level = 1
@@ -25,7 +25,7 @@ signal death
 
 func _ready():
 	current_health = max_health;
-	max_xp = 100
+	max_xp = level * 100	
 	
 func update_xp():
 	emit_signal("set_xp")

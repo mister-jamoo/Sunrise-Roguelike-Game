@@ -1,0 +1,11 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[sub_resource type="DynamicFontData" id=3]
+antialiased = false
+font_path = "res://Fonts/VTCGoblinHandBold.ttf"
+
+[resource]
+size = 31
+outline_size = 1
+outline_color = Color( 0, 0, 0, 0.611765 )
+font_data = SubResource( 3 )

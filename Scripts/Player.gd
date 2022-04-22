@@ -1,12 +1,19 @@
 extends KinematicBody2D
 
+const Inventory = preload("res://Scenes/Inventory.gd")
+const Equipment = preload("res://Equipment.gd")
+
+export var rotation_speed = PI
+
+signal take_damage
+
+var inventory = Inventory.new()
+var equipment = Equipment.new()
 var bloodsplatter = preload("res://Scenes/BloodSplatter.tscn")
 var velocity = Vector2()
 var attackBool = false
 var canMove = true
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
-export var rotation_speed = PI
-signal take_damage
 
 func _ready():
 	$PlayerStats.connect("death", self, "deathfunc")
