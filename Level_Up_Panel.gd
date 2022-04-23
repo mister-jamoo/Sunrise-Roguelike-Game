@@ -3,6 +3,7 @@ extends TextureRect
 var choice_array = []
 
 signal item_picked
+signal trait_picked
 
 func _ready():
 	randomize()
@@ -34,7 +35,7 @@ func _on_Choice_1_pressed():
 	if(choice_array[0].get_type() == "item"):
 		emit_signal("item_picked", choice_array[0])
 	else:
-		get_parent().update_traits(choice_array[0])
+		emit_signal("trait_picked", choice_array[0])
 	
 	get_tree().paused = false
 	queue_free()
@@ -44,7 +45,7 @@ func _on_Choice_2_pressed():
 	if(choice_array[1].get_type() == "item"):
 		emit_signal("item_picked", choice_array[1])
 	else:
-		get_parent().update_traits(choice_array[1])
+		emit_signal("trait_picked", choice_array[1])
 		
 	get_tree().paused = false
 	queue_free()
@@ -54,7 +55,7 @@ func _on_Choice_3_pressed():
 	if(choice_array[2].get_type() == "item"):
 		emit_signal("item_picked", choice_array[2])
 	else:
-		get_parent().update_traits(choice_array[2])
+		emit_signal("trait_picked", choice_array[2])
 		
 	get_tree().paused = false
 	queue_free()

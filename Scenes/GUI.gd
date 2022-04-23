@@ -8,12 +8,11 @@ var level_up_panel = preload("res://Scenes/Level_Up_Panel.tscn")
 
 var path = "res://Assets/16x16 RPG Item Pack/"
 
-var equipment_slots = []
 var traits_array = []
 
 func _process(_delta):
 	if Input.is_action_just_pressed("character_book"):
-		if($Character_Book):
+		if(get_node_or_null("Character_Book")):
 			$Tween.interpolate_property($Character_Book, "rect_position:x", $Character_Book.rect_position.x, 1200, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 			$Tween.start()
 			yield($Tween,"tween_all_completed")
@@ -22,7 +21,7 @@ func _process(_delta):
 		else:
 			var character_book_instance = character_book.instance()
 			add_child(character_book_instance)
-			populateInventory(player.inventory.items)
+			populateInventory(player.inventory.items, player.equipment.equipped, player.traits.traits)
 			$Character_Book.update_character_stats(
 			playerStats.level, 
 			playerStats.base_damage, 
@@ -59,16 +58,78 @@ func _ready():
 	playerStats.connect("set_xp", self, "update_GUI")
 	playerStats.connect("level_up", self, "level_up_GUI")
 	
-func populateInventory(items):
+func populateInventory(items, equipped, traits):
 	var inventory = $Character_Book/Page_1/Inventory
+	var equipmentInv = $Character_Book/Page_1/Equipment
+	var traitsPage = $Character_Book/Page_2/Traits
 	
 	for i in items.size():
 		var slot = inventory.get_child(i).get_child(0)
 		slot.connect("item_moved", self, "swap_items")
+		slot.connect("item_unequipped", self,"unequip_item")
 		slot.index = i
+		slot.type = "inventory"
 		if(items[i] != null):	
 			slot.texture = items[i].texture
+	
+	for i in equipped.size():
+		var slot = equipmentInv.get_child(i).get_child(0)
+		slot.connect("equipment_moved", self, "swap_equipment")
+		slot.connect("item_equipped", self, "equip_item")
+		slot.index = i
+		slot.type = "equipped"
+		if(equipped[i] != null):	
+			slot.texture = equipped[i].texture
 			
+	for i in traits.size():
+		var slot = traitsPage.get_child(i).get_child(0)
+		slot.index = i
+		slot.type = "trait"
+		if(traits[i] != null):	
+			slot.texture = traits[i].texture
+			
+func unequip_item(data):
+	var equipment_slot = data["from"]
+	var inventory_slot = data["to"]
+
+	var moved_item = player.equipment.remove_item_from_slot(equipment_slot)
+	var swapped_item = player.inventory.remove_item_from_slot(inventory_slot)
+	player.inventory.add_item_to_slot(moved_item, inventory_slot)
+	player.equipment.add_item_to_slot(swapped_item, equipment_slot)
+	
+	var equipment = $Character_Book/Page_1/Equipment
+	var inventory = $Character_Book/Page_1/Inventory
+	var from = equipment.get_child(equipment_slot).get_child(0)
+	var to = inventory.get_child(inventory_slot).get_child(0)
+	var temp = to.texture
+	to.texture = from.texture
+	from.texture = temp
+	
+	player.remove_weapon(moved_item)
+	if(swapped_item != null):
+		player.instance_weapon(swapped_item)
+	
+func equip_item(data):
+	var equipment_slot = data["to"]
+	var inventory_slot = data["from"]
+
+	var moved_item = player.inventory.remove_item_from_slot(inventory_slot)
+	var swapped_item = player.equipment.remove_item_from_slot(equipment_slot)
+	player.equipment.add_item_to_slot(moved_item, equipment_slot)
+	player.inventory.add_item_to_slot(swapped_item, inventory_slot)
+
+	var equipment = $Character_Book/Page_1/Equipment
+	var inventory = $Character_Book/Page_1/Inventory 
+	var from = inventory.get_child(inventory_slot).get_child(0)
+	var to = equipment.get_child(equipment_slot).get_child(0)
+	var temp = to.texture
+	to.texture = from.texture
+	from.texture = temp
+	
+	if(swapped_item != null):
+		player.remove_weapon(swapped_item)
+	player.instance_weapon(moved_item)
+
 func swap_items(data):
 	player.inventory.swap_items(data["from"], data["to"])
 	
@@ -79,17 +140,22 @@ func swap_items(data):
 	to.texture = from.texture
 	from.texture = temp
 
-func update_traits(choice):
-	if(traits_array.size() < 25):
-		traits_array.append(choice)
-		
-#	update playerstats
-	for n in traits_array.size():
-		var stat_value
-		var stat_name
-		stat_name = traits_array[n].stat1[0]
-		stat_value = traits_array[n].stat1[1]
-		playerStats.set(stat_name, playerStats.get(stat_name) + stat_value)
+func swap_equipment(data):
+	player.equipment.swap_equipment(data["from"], data["to"])
+	
+	var equipmentInv = $Character_Book/Page_1/Equipment
+	var from = equipmentInv.get_child(data["from"]).get_child(0)
+	var to = equipmentInv.get_child(data["to"]).get_child(0)
+	var temp = to.texture
+	to.texture = from.texture
+	from.texture = temp
+
+func pick_trait(trait):
+	player.traits.add_trait(trait)
+	print(trait.stat1)
+	var stat_name = trait.stat1[0]
+	var stat_value = trait.stat1[1]
+	playerStats.set(stat_name, playerStats.get(stat_name) + stat_value)
 	
 	update_GUI()
 	
@@ -129,6 +195,7 @@ func level_up_GUI():
 	var level_up_panel_instance = level_up_panel.instance()
 	add_child(level_up_panel_instance)
 	level_up_panel_instance.connect("item_picked", self, "pick_item")
+	level_up_panel_instance.connect("trait_picked", self, "pick_trait")
 	
 	level_up_panel_instance.update_level(playerStats.level)
 	get_tree().paused = true

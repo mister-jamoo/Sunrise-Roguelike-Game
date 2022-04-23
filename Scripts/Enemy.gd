@@ -2,7 +2,9 @@ extends KinematicBody2D
 
 var floating_text = preload("res://Scenes/Floating Text.tscn")
 var xp_gem = preload("res://Scenes/XP_GEM.tscn")
-
+var ice_effect = preload("res://Ice_Effect.tscn")
+var default_movement_speed
+var slowed 
 var run_speed = 25
 var velocity = Vector2.ZERO
 var attackBool = false
@@ -13,32 +15,19 @@ var facingRight = true;
 
 var path: Array = []
 
-
-onready var levelNavigation: Navigation2D = get_tree().get_nodes_in_group("LevelNavigation")[0]
 onready var player = get_tree().get_nodes_in_group("Player")[0]
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
+func _ready():
+	default_movement_speed = $EnemyStats.movement_speed
 
 func _physics_process(_delta):
-	
-#	if(player && levelNavigation):
-#		generate_path()
-#		navigate()
+		
 	moveTowardsPlayer()
+	
 	velocity = move_and_slide(velocity)
 	
-func navigate():
-	if path.size() > 0:
-		velocity = global_position.direction_to(path[1]) * $EnemyStats.movement_speed
-		
-		if global_position == path[0]:
-			path.pop_front()
-	
-func generate_path():
-	if levelNavigation != null and player != null:
-		path = levelNavigation.get_simple_path(global_position, player.global_position, false)
-
 func moveTowardsPlayer():
 	velocity = Vector2.ZERO
 #	$AnimationPlayer.playback_speed = $EnemyStats.movement_speed / 22
@@ -78,7 +67,10 @@ func create_hit_timer():
 	timer.start(0.2)
 
 func hit_effect():
-	$AnimatedSprite.modulate = Color(1,1,1)
+	if slowed:
+		$AnimatedSprite.modulate = "0058ff"
+	else:
+		$AnimatedSprite.modulate = Color(1,1,1)
 
 func dealDamage():
 	if(attackBool):
@@ -101,10 +93,23 @@ func generateXPGem():
 		xp_gem_instance.position.x = (self.position.x + randPos)
 		randPos = randi() % 5
 		xp_gem_instance.position.y = (self.position.y + randPos)
-		get_parent().add_child(xp_gem_instance)
+		get_parent().get_parent().add_child(xp_gem_instance)
 		
+func slowed(slow_amount):
+	slowed = true
+	$EnemyStats.movement_speed *= slow_amount
+	$AnimatedSprite.modulate = "0058ff"
+	var ice_effect_instance = ice_effect.instance()
+	add_child(ice_effect_instance)
 	
+func unslow(slow_amount):
+	slowed = false
+	$EnemyStats.movement_speed = default_movement_speed
+	$AnimatedSprite.modulate = "ffffff"
+		
 func takeDamage(damage, crit):
+	if($EnemyStats.current_health <= 0):
+		return
 #	damage reduction
 	damage -= int(damage * $EnemyStats.armor)
 
@@ -117,11 +122,11 @@ func takeDamage(damage, crit):
 	if(damage != 0):
 		create_hit_timer()
 		
+	
 	$EnemyStats.current_health -= damage 
-	if($EnemyStats.current_health <= 0):
+	if($EnemyStats.current_health <= 0 ):
 		generateXPGem()
 		$AttackTimer.stop()
-		$Collision.disabled = true
 		z_index = 0
 		var tween = Tween.new()
 		add_child(tween)

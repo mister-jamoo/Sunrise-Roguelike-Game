@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PinDrop.wav-a4a79023fde447b0230246c34c17a003.sample"
+
+[deps]
+
+source_file="res://Assets/PixelEffects/Assets/PixelEffects/Audio/PinDrop.wav"
+dest_files=[ "res://.import/PinDrop.wav-a4a79023fde447b0230246c34c17a003.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

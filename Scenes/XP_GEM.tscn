@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/XP_GEM.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Coin_Gems/spr_coin_azu.png" type="Texture" id=2]
 [ext_resource path="res://Assets/light.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Coin_Gems/spr_coin_ama.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
@@ -20,11 +21,32 @@ region = Rect2( 32, 0, 16, 16 )
 atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 48, 0, 16, 16 )
+
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "yellow",
 "speed": 5.0
 } ]
 
@@ -50,15 +72,17 @@ tracks/0/keys = {
 }
 
 [node name="XP_GEM" type="Area2D"]
+light_mask = 0
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-light_mask = 2
-position = Vector2( 0, -0.179483 )
+modulate = Color( 55.49, 19.18, 6.36, 1 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 6 )
+animation = "yellow"
+frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -68,9 +92,8 @@ shape = SubResource( 1 )
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 3 )
 texture_scale = 0.05
-color = Color( 0.168627, 0.494118, 1, 1 )
-energy = 0.6
-mode = 2
+color = Color( 1, 0.980392, 0.772549, 1 )
+energy = 0.5
 
 [node name="Tween" type="Tween" parent="."]
 
