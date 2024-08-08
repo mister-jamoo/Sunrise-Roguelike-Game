@@ -1,15 +1,15 @@
 extends KinematicBody2D
 
-const Inventory = preload("res://Scenes/Inventory.gd")
-const Equipment = preload("res://Equipment.gd")
-const Traits = preload("res://Traits.gd")
+const Inventory = preload("res://Scripts/Inventory.gd")
+const Equipment = preload("res://Scripts/Equipment.gd")
+const Traits = preload("res://Scripts/Traits.gd")
 
 signal take_damage
 
-var axe_of_savagery = preload("res://Axe_of_Savagery.tscn")
-var shield_of_slowing = preload("res://Shield_of_Slowing.tscn")
+var axe_of_savagery = preload("res://Scenes/Axe_of_Savagery.tscn")
+var shield_of_slowing = preload("res://Scenes/Shield_of_Slowing.tscn")
 var shield_count : int
-var staff_of_solar = preload("res://Staff of Solar.tscn")
+var staff_of_solar = preload("res://Scenes/Staff of Solar.tscn")
 
 var inventory = Inventory.new()
 var equipment = Equipment.new()
@@ -195,7 +195,7 @@ func getXP(xp_amount):
 	else:
 		$PlayerStats.update_xp()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	
 	

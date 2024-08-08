@@ -20,8 +20,8 @@ func generate_choices():
 		
 	update_choices(choice_array)
 
-func update_choices(choice_array):
-	for n in choice_array.size():
+func update_choices(choices):
+	for n in choices.size():
 		$VBoxContainer.get_child(n).icon = choice_array[n].texture
 		$VBoxContainer.get_child(n).get_child(0).text = str(choice_array[n].title)
 		$VBoxContainer.get_child(n).get_child(1).text = str(choice_array[n].description)
@@ -40,7 +40,6 @@ func _on_Choice_1_pressed():
 	get_tree().paused = false
 	queue_free()
 	
-
 func _on_Choice_2_pressed():
 	if(choice_array[1].get_type() == "item"):
 		emit_signal("item_picked", choice_array[1])
@@ -49,7 +48,6 @@ func _on_Choice_2_pressed():
 		
 	get_tree().paused = false
 	queue_free()
-
 
 func _on_Choice_3_pressed():
 	if(choice_array[2].get_type() == "item"):

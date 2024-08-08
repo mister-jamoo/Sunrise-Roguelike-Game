@@ -1,6 +1,6 @@
 extends Node2D
 
-var fireball = preload("res://Fireball.tscn")
+var fireball = preload("res://Scenes/Fireball.tscn")
 
 func _ready():
 	randomize()

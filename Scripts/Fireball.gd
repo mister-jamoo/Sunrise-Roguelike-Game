@@ -11,7 +11,7 @@ func _ready():
 		target.get_ref().takeDamage(damageArr[0], damageArr[1])
 	queue_free()
 	
-func _process(delta):
+func _process(_delta):
 	if(target.get_ref() != null):
 		self.look_at(target.get_ref().global_position)
 	else:

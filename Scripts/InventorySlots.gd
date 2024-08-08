@@ -8,7 +8,7 @@ signal item_unequipped
 var index
 var type
 
-func get_drag_data(position):
+func get_drag_data(_position):
 	var move_data = {}
 	move_data["index"] = index
 	move_data["type"] = type
@@ -24,7 +24,7 @@ func get_drag_data(position):
 	
 	return move_data
 
-func can_drop_data(position, move_data):
+func can_drop_data(_position, move_data):
 	if self.type != move_data["type"]:
 		return true
 	if self.index != move_data["index"]:

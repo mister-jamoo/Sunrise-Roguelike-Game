@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Cryo's Mini GUI/GUI/Inventory Slot.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/InventorySlots.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/InventorySlots.gd" type="Script" id=2]
 
 [node name="Slot" type="TextureRect"]
 margin_right = 97.0

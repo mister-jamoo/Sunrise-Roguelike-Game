@@ -4,7 +4,7 @@ var player
 
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	player = get_node("/root/level_1/YSort/Player")
 	
 	
@@ -21,8 +21,4 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Debug_AddBoots"):
 		player.inventory.add_item(Armory.all_items_array[5])
 	
-	if Input.is_action_just_pressed("Debug_InventoryArray"):
-		print(player.inventory.items)
-	if Input.is_action_just_pressed("Debug_EquipmentArray"):
-		print(player.equipment.equipped)
 	

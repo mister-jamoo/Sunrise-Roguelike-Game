@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Super GUI Bundle 3 Paper Pack v1.0/Paper/1.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Header_White.tres" type="DynamicFontData" id=2]
-[ext_resource path="res://Level_Up_Panel.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Level_Up_Panel_Signals.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Body_White.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Assets/16x16 RPG Item Pack/Item__25.png" type="Texture" id=5]
 [ext_resource path="res://Assets/16x16 RPG Item Pack/Item__5.png" type="Texture" id=6]

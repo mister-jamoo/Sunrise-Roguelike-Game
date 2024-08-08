@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Ball and Chain Bot/attack.png" type="Texture" id=8]
 [ext_resource path="res://Assets/light.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Shadows/SmallShadow.png" type="Texture" id=10]
-[ext_resource path="res://Scenes/Axes.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Axes.gd" type="Script" id=11]
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 6 )

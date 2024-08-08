@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var floating_text = preload("res://Scenes/Floating Text.tscn")
 var xp_gem = preload("res://Scenes/XP_GEM.tscn")
-var ice_effect = preload("res://Ice_Effect.tscn")
+var ice_effect = preload("res://Scenes/Ice_Effect.tscn")
 var default_movement_speed
 var slowed 
 var run_speed = 25
@@ -95,7 +95,7 @@ func generateXPGem():
 		xp_gem_instance.position.y = (self.position.y + randPos)
 		get_parent().get_parent().add_child(xp_gem_instance)
 		
-func slowed(slow_amount):
+func slow(slow_amount):
 	slowed = true
 	$EnemyStats.movement_speed *= slow_amount
 	$AnimatedSprite.modulate = "0058ff"

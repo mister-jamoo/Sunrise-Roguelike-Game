@@ -16,8 +16,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Armory="*res://Armory.gd"
-DebugKeys="*res://DebugKeys.gd"
+Armory="*res://Scripts/Armory.gd"
+DebugKeys="*res://Scripts/DebugKeys.gd"
 
 [display]
 
